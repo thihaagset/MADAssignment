@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                String progressString = String.valueOf(progress+30);
+                int ps = progress+30;
+                String progressString = String.valueOf(ps);
                 tv.setText(progressString);
-
             }
 
             @Override
@@ -47,6 +47,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
+
+    public void onClickBuild(View v){
+        Intent i = new Intent(MainActivity.this,Main2Activity.class);
+        i.putExtra("SeekBar",tv.getText());
+        startActivity(i);
+    }
+
     public void onclick(View v2){
         Intent intent = new Intent(this,Main4Activity.class);
 
