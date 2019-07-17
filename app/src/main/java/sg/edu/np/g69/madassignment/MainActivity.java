@@ -66,7 +66,6 @@ public class MainActivity extends Main6Activity {
 
     public void onclick(View v2){
         Intent intent = new Intent(this,Main4Activity.class);
-
         startActivity(intent);
     }
 }
