@@ -14,7 +14,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/ic_launcher_background"
+        android:background="@drawable/image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,6 +28,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="#005B96"
+        android:onClick="onClickBuild"
         android:text="Build"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,7 +39,7 @@
         app:layout_constraintVertical_bias="0.692" />
 
     <SeekBar
-        android:id="@+id/seekBar"
+        android:id="@+id/seekBarTime"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="220dp"
         android:layout_height="30dp"
@@ -46,34 +47,24 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:max="10"
-        android:progress="3"
+        android:progress="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#03396c"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/timeTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="TextView"
-        android:textColor="#b3cde0"
+        android:text="Time"
+        android:textColor="#8BBDE2"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/seekBarTime" />
 
     <Button
         android:id="@+id/button2"
