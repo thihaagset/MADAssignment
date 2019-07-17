@@ -1,16 +1,19 @@
 package sg.edu.np.g69.madassignment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Main6Activity {
     ImageView imageView;
     SeekBar sb;
     TextView tv;
@@ -18,7 +21,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ViewGroup root = findViewById(R.id.drawer_layout);
+        LayoutInflater inflater = (LayoutInflater) this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View contentView = inflater.inflate(R.layout.activity_main, root, false);
+        drawer.addView(contentView, 0);
+
 
         sb = findViewById(R.id.seekBarTime);
         tv = findViewById(R.id.timeTV);
