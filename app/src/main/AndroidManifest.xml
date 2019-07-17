@@ -14,17 +14,24 @@
             android:name=".Main6Activity"
             android:label="@string/title_activity_main6"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Main5Activity" />
-        <activity android:name=".Main4Activity" />
-        <activity android:name=".Main3Activity" />
-        <activity android:name=".Main2Activity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Main5Activity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Main4Activity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Main3Activity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Main2Activity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SignUp"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
