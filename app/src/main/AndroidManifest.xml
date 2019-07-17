@@ -14,16 +14,6 @@
             android:name=".Main6Activity"
             android:label="@string/title_activity_main6"
             android:theme="@style/AppTheme.NoActionBar"/>
-<<<<<<< HEAD
-        <activity android:name=".Main5Activity" />
-        <activity android:name=".Main4Activity" />
-        <activity android:name=".Main3Activity" />
-        <activity android:name=".Main2Activity" />
-        <activity android:name=".LoginInAttempt"/>
-        <activity android:name=".SignUp"/>
-        <activity android:name=".UserChart">
-        <activity android:name=".MainActivity">
-=======
         <activity android:name=".Main5Activity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Main4Activity"
@@ -34,7 +24,9 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
->>>>>>> c4778f9f98f55d6b81363ca220fa0bf1e87e7236
+            <activity android:name=".LoginInAttempt"/>
+            <activity android:name=".SignUp"/>
+            <activity android:name=".UserChart">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
