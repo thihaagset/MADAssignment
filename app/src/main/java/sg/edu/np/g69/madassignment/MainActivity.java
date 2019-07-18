@@ -12,11 +12,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+
 
 public class MainActivity extends Main6Activity {
     ImageView imageView;
     SeekBar sb;
     TextView tv;
+    Intent i;
+    String useruid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,10 @@ public class MainActivity extends Main6Activity {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_main, root, false);
         drawer.addView(contentView, 0);
+        //code for firebase
+        i = getIntent();
+        useruid = i.getStringExtra("useruid");
+        //Firebase codes end here
 
 
         sb = findViewById(R.id.seekBarTime);
@@ -61,7 +70,11 @@ public class MainActivity extends Main6Activity {
     public void onClickBuild(View v){
         Intent i = new Intent(MainActivity.this,Main2Activity.class);
         i.putExtra("SeekBar",tv.getText());
+        //The following code is just for firebase :)
+        i.putExtra("useruid",useruid);
+        //Firebase code ends here :(
         startActivity(i);
+
     }
 
     public void onclick(View v2){

@@ -14,11 +14,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Main6Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     protected  DrawerLayout drawer;
+    FirebaseAuth user;
+    String useruid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,9 @@ public class Main6Activity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        user = FirebaseAuth.getInstance();
+        useruid = user.getCurrentUser().getUid();
     }
 
     @Override
@@ -85,6 +93,7 @@ public class Main6Activity extends AppCompatActivity
 
         } else if (id == R.id.nav_tools) {
             Intent intent = new Intent(this,UserChart.class);
+            intent.putExtra("UserUid",useruid);
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {

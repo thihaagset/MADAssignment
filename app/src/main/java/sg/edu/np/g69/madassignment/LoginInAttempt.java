@@ -17,6 +17,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import static java.util.logging.Logger.global;
+
 public class LoginInAttempt extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private TextView tv_NewUser;
@@ -61,6 +63,7 @@ public class LoginInAttempt extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             Intent intent = new Intent(LoginInAttempt.this,MainActivity.class);
+                            intent.putExtra("useruid",user.getUid());
                             startActivity(intent);
 
                         } else {
