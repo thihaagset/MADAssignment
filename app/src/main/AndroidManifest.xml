@@ -20,7 +20,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".GiveUp"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".CountDownTimer"
+        <activity android:name=".CountDownActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
             <activity android:name=".UserChart"
                 android:theme="@style/AppTheme.NoActionBar"/>

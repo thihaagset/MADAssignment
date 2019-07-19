@@ -1,14 +1,19 @@
 package sg.edu.np.g69.madassignment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -21,14 +26,17 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CountDownTimer extends MainNavDrawer {
-    Intent i;
+public class CountDownActivity extends MainNavDrawer {
+    Intent intent;
     TextView tv;
-    String time;
+    String timeString;
     String useruid;
     FirebaseFirestore db;
     Calendar calendar;
     SimpleDateFormat dateFormat;
+    ProgressBar mProgressBar;
+    CountDownTimer cdt;
+    int time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +48,14 @@ public class CountDownTimer extends MainNavDrawer {
         drawer.addView(contentView, 0);
 
 
-        i = getIntent();
-        time = i.getStringExtra("SeekBar");
-        useruid = i.getStringExtra("useruid");
+        intent = getIntent();
+        timeString = intent.getStringExtra("SeekBar");
+        useruid = intent.getStringExtra("useruid");
         tv = findViewById(R.id.testTV);
-        tv.setText(time);
+        tv.setText(timeString);
+
+        time = Integer.parseInt(timeString);
+        startTimer(time);
 
         //firebase code:
         db = FirebaseFirestore.getInstance();
@@ -61,7 +72,7 @@ public class CountDownTimer extends MainNavDrawer {
         String formattedDate = df.format(c);
         Map<String, Object> buildHistory = new HashMap<>();
         buildHistory.put("date", formattedDate);
-        buildHistory.put("duration",time);
+        buildHistory.put("duration",timeString);
         buildHistory.put("isComplete", false);
         long time= System.currentTimeMillis();
 
@@ -86,9 +97,41 @@ public class CountDownTimer extends MainNavDrawer {
     //firebase code ends here uwu
 
     //you can do your timer here
-    public void getuser(View view) {
+    private void startTimer(int duration) {
         yesfirebase();
 
+        int i = 0;
+
+        mProgressBar=findViewById(R.id.progressBar);
+        mProgressBar.setProgress(i);
+
+        cdt = new CountDownTimer(duration*6000,1000){
+            @Override
+            public void onTick(long millisUntilFinished) {
+                tv.setText((int)millisUntilFinished/60000 + " : " + (int)millisUntilFinished%60000/1000);
+            }
+
+            @Override
+            public void onFinish() {
+                tv.setText("0 : 00");
+
+                Toast tt = Toast.makeText(CountDownActivity.this,
+                        "Times Up!", Toast.LENGTH_LONG);
+                tt.show();
+
+                new AlertDialog.Builder(CountDownActivity.this)
+                        .setTitle("Times Up!")
+                        .setMessage("Times up")
+                        .setPositiveButton("Ok",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+
+                                    }
+                                })
+                        .show();
+            }
+        }.start();
     }
 }
 

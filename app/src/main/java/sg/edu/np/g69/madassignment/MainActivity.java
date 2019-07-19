@@ -64,7 +64,7 @@ public class MainActivity extends MainNavDrawer {
 
 
     public void onClickBuild(View v){
-        Intent i = new Intent(MainActivity.this, CountDownTimer.class);
+        Intent i = new Intent(MainActivity.this, CountDownActivity.class);
         i.putExtra("SeekBar",tv.getText());
         //The following code is just for firebase :)
         i.putExtra("useruid",useruid);
@@ -77,4 +77,5 @@ public class MainActivity extends MainNavDrawer {
         Intent intent = new Intent(this,Main4Activity.class);
         startActivity(intent);
     }
+
 }
