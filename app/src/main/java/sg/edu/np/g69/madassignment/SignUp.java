@@ -2,7 +2,6 @@ package sg.edu.np.g69.madassignment;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,7 +25,7 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignUp extends Main6Activity {
+public class SignUp extends MainNavDrawer {
     EditText email;
     EditText password;
     Button button;

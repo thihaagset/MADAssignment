@@ -2,9 +2,6 @@ package sg.edu.np.g69.madassignment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
@@ -14,11 +11,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Main6Activity extends AppCompatActivity
+public class MainNavDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     protected  DrawerLayout drawer;
@@ -28,7 +24,7 @@ public class Main6Activity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main6);
+        setContentView(R.layout.activity_mainnavdrawer);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -57,7 +53,7 @@ public class Main6Activity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main6, menu);
+        getMenuInflater().inflate(R.menu.mainnavdrawer, menu);
         return true;
     }
 

@@ -12,7 +12,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 
-public class MainActivity extends Main6Activity {
+public class MainActivity extends MainNavDrawer {
     ImageView imageView;
     SeekBar sb;
     TextView tv;
@@ -64,7 +64,7 @@ public class MainActivity extends Main6Activity {
 
 
     public void onClickBuild(View v){
-        Intent i = new Intent(MainActivity.this,Main2Activity.class);
+        Intent i = new Intent(MainActivity.this, CountDownTimer.class);
         i.putExtra("SeekBar",tv.getText());
         //The following code is just for firebase :)
         i.putExtra("useruid",useruid);

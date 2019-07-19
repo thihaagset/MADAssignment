@@ -11,16 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Main6Activity"
+            android:name=".MainNavDrawer"
             android:label="@string/title_activity_main6"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Main5Activity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Main4Activity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Main3Activity"
+        <activity android:name=".GiveUp"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Main2Activity"
+        <activity android:name=".CountDownTimer"
             android:theme="@style/AppTheme.NoActionBar"/>
             <activity android:name=".UserChart"
                 android:theme="@style/AppTheme.NoActionBar"/>
