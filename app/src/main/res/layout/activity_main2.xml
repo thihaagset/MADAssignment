@@ -4,7 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#01B3A6"
     tools:context=".Main2Activity">
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/circularImageView"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/fslogo"
+        app:civ_border_color="#43E8D8"
+        app:civ_border_width="8dp"
+        app:civ_shadow="true"
+        app:civ_shadow_color="#1D8ECF"
+        app:civ_shadow_radius="10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/pauseBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#43E8D8"
+        android:text="pause"
+        android:textColor="#55697A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/testTV" />
+
 
     <TextView
         android:id="@+id/testTV"
@@ -13,26 +48,25 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="TextView"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/button6"
+        android:text="30"
+        android:textColor="#B3ECEC"
+        android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/circularImageView" />
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="214dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="getuser"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="#01B2A6"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/circularImageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

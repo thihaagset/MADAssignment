@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00D4C5"
+    android:background="#01B3A6"
     tools:context=".MainActivity">
 
     <com.mikhaellopez.circularimageview.CircularImageView
@@ -14,7 +14,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="120dp"
         android:layout_marginEnd="8dp"
-        android:src="@drawable/image"
+        android:src="@drawable/fslogo"
         app:civ_border_color="#43E8D8"
         app:civ_border_width="8dp"
         app:civ_shadow="true"
@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/pauseBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -35,11 +35,12 @@
         android:background="#43E8D8"
         android:onClick="onClickBuild"
         android:text="Build"
-        android:textColor="#000000"
+        android:textColor="#55697A"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeTV" />
+        app:layout_constraintTop_toBottomOf="@+id/testTV" />
 
     <SeekBar
         android:id="@+id/seekBarTime"
@@ -58,7 +59,7 @@
 
 
     <TextView
-        android:id="@+id/timeTV"
+        android:id="@+id/testTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

@@ -4,6 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#01B3A6"
     tools:context=".Main3Activity">
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/circularImageView"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/collapseBld"
+        app:civ_border_color="#43E8D8"
+        app:civ_border_width="8dp"
+        app:civ_shadow="true"
+        app:civ_shadow_color="#1D8ECF"
+        app:civ_shadow_radius="10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/advent_pro"
+        android:text="Opps! You can do better next time"
+        android:textColor="#B2FEFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/circularImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:background="#42E6D7"
+        android:fontFamily="@font/advent_pro_semibold"
+        android:padding="10px"
+        android:text="Another One"
+        android:textColor="#55697A"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circularImageView" />
 
 </android.support.constraint.ConstraintLayout>

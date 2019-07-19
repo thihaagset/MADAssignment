@@ -2,18 +2,14 @@ package sg.edu.np.g69.madassignment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 
 public class MainActivity extends Main6Activity {
@@ -38,7 +34,7 @@ public class MainActivity extends Main6Activity {
 
 
         sb = findViewById(R.id.seekBarTime);
-        tv = findViewById(R.id.timeTV);
+        tv = findViewById(R.id.testTV);
         sb.setProgress(0);
         sb.incrementProgressBy(10);
         sb.setMax(90);
