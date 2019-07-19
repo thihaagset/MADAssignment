@@ -35,14 +35,15 @@
         android:background="#43E8D8"
         android:text="pause"
         android:textColor="#55697A"
+        android:onClick="onClickPause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/testTV" />
+        app:layout_constraintTop_toBottomOf="@+id/countTV" />
 
 
     <TextView
-        android:id="@+id/testTV"
+        android:id="@+id/countTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

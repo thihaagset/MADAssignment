@@ -51,7 +51,7 @@ public class CountDownActivity extends MainNavDrawer {
         intent = getIntent();
         timeString = intent.getStringExtra("SeekBar");
         useruid = intent.getStringExtra("useruid");
-        tv = findViewById(R.id.testTV);
+        tv = findViewById(R.id.countTV);
         tv.setText(timeString);
 
         time = Integer.parseInt(timeString);
@@ -60,6 +60,14 @@ public class CountDownActivity extends MainNavDrawer {
         //firebase code:
         db = FirebaseFirestore.getInstance();
         calendar = Calendar.getInstance();
+    }
+
+    public void onClickPause(View v){
+        cdt.cancel();
+        tv.setText("0:00");
+
+        Intent intent = new Intent(CountDownActivity.this,GiveUp.class);
+        startActivity(intent);
     }
 
     //Hi,Please don't change the code below, it is just for firebase purpose :) - yuxuan
@@ -100,8 +108,11 @@ public class CountDownActivity extends MainNavDrawer {
     private void startTimer(int duration) {
         yesfirebase();
 
-        int i = 0;
+        if(cdt != null){
+            cdt.cancel();
+        }
 
+        int i = 0;
         mProgressBar=findViewById(R.id.progressBar);
         mProgressBar.setProgress(i);
 

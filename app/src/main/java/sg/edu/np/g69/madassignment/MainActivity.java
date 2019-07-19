@@ -27,6 +27,7 @@ public class MainActivity extends MainNavDrawer {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_main, root, false);
         drawer.addView(contentView, 0);
+
         //code for firebase
         i = getIntent();
         useruid = i.getStringExtra("useruid");
@@ -34,7 +35,7 @@ public class MainActivity extends MainNavDrawer {
 
 
         sb = findViewById(R.id.seekBarTime);
-        tv = findViewById(R.id.testTV);
+        tv = findViewById(R.id.countTV);
         sb.setProgress(0);
         sb.incrementProgressBy(10);
         sb.setMax(90);
