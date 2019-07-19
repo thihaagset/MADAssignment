@@ -54,6 +54,10 @@ public class CountDownActivity extends MainNavDrawer {
         tv = findViewById(R.id.countTV);
         tv.setText(timeString);
 
+        mProgressBar=findViewById(R.id.progressBar);
+        mProgressBar.setProgress(time);
+        mProgressBar.setMax(120);
+
         time = Integer.parseInt(timeString);
         startTimer(time);
 
@@ -112,19 +116,17 @@ public class CountDownActivity extends MainNavDrawer {
             cdt.cancel();
         }
 
-        int i = 0;
-        mProgressBar=findViewById(R.id.progressBar);
-        mProgressBar.setProgress(i);
-
         cdt = new CountDownTimer(duration*6000,1000){
             @Override
             public void onTick(long millisUntilFinished) {
                 tv.setText((int)millisUntilFinished/60000 + " : " + (int)millisUntilFinished%60000/1000);
+                mProgressBar.setProgress((int)millisUntilFinished/60000);
             }
 
             @Override
             public void onFinish() {
                 tv.setText("0 : 00");
+                mProgressBar.setProgress(0);
 
                 Toast tt = Toast.makeText(CountDownActivity.this,
                         "Times Up!", Toast.LENGTH_LONG);
