@@ -87,7 +87,7 @@ public class CountDownActivity extends MainNavDrawer {
             cdt.cancel();
         }
 
-        cdt = new CountDownTimer(duration*6000,1000){
+        cdt = new CountDownTimer(duration*60000,1000){
             @Override
             public void onTick(long millisUntilFinished) {
                 tv.setText((int)millisUntilFinished/60000 + " : " + (int)millisUntilFinished%60000/1000);

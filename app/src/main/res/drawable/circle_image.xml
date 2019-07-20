@@ -5,5 +5,5 @@
     android:thicknessRatio="2"
     android:useLevel="false">
     <solid android:color="@android:color/transparent"/>
-    <stroke android:width="5dp" android:color="#8BBDE2"/>
+    <stroke android:width="10dp" android:color="#8BBDE2"/>
 </shape>
