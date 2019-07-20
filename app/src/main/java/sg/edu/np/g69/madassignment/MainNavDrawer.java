@@ -79,7 +79,9 @@ public class MainNavDrawer extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-
+            Intent intent = new Intent(this,MainActivity.class);
+            intent.putExtra("UserUid",useruid);
+            startActivity(intent);
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 

@@ -14,7 +14,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="120dp"
         android:layout_marginEnd="8dp"
-        android:src="@drawable/collapseBld"
+        android:src="@drawable/collapsebld"
         app:civ_border_color="#43E8D8"
         app:civ_border_width="8dp"
         app:civ_shadow="true"
