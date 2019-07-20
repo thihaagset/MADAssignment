@@ -65,7 +65,8 @@ public class CountDownActivity extends MainNavDrawer {
         db = FirebaseFirestore.getInstance();
         calendar = Calendar.getInstance();
         Toast.makeText(CountDownActivity.this,useruid,Toast.LENGTH_LONG).show();
-        
+
+        startTimer(time);
     }
 
     public void onClickPause(View v){
