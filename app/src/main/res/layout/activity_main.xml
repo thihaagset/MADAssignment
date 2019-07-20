@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <com.mikhaellopez.circularimageview.CircularImageView
-        android:id="@+id/circularImageView"
+        android:id="@+id/circularImageView2"
         android:layout_width="220dp"
         android:layout_height="220dp"
         android:layout_marginStart="8dp"
@@ -33,6 +33,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="#43E8D8"
+        android:fontFamily="@font/advent_pro"
         android:onClick="onClickBuild"
         android:text="Build"
         android:textColor="#55697A"
@@ -55,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circularImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/circularImageView2" />
 
 
     <TextView
@@ -81,6 +82,20 @@
         android:onClick="onclick"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/advent_pro_semibold"
+        android:text="Please select a time"
+        android:textColor="#42E6D7"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/circularImageView2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

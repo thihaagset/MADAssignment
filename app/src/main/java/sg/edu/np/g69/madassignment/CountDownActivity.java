@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class CountDownActivity extends MainNavDrawer {
     ProgressBar mProgressBar;
     CountDownTimer cdt;
     int time;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,16 @@ public class CountDownActivity extends MainNavDrawer {
         calendar = Calendar.getInstance();
         Toast.makeText(CountDownActivity.this,useruid,Toast.LENGTH_LONG).show();
 
+        imageView = findViewById(R.id.circularImageView2);
+        if(time>=30 && time<=50){
+            imageView.setImageResource(R.drawable.woodbld);
+        }else if(time>= 51 && time<=70){
+            imageView.setImageResource(R.drawable.smallbld);
+        }else if(time>= 71 && time<=90){
+            imageView.setImageResource(R.drawable.mediumbld);
+        }else if(time>= 91 && time<=120){
+            imageView.setImageResource(R.drawable.skybld);
+        }
         startTimer(time);
     }
 

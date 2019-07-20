@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.mikhaellopez.circularimageview.CircularImageView
-        android:id="@+id/circularImageView"
+        android:id="@+id/circularImageView2"
         android:layout_width="220dp"
         android:layout_height="220dp"
         android:layout_marginStart="8dp"
@@ -72,6 +72,6 @@
         android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circularImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/circularImageView2" />
 
 </android.support.constraint.ConstraintLayout>

@@ -37,7 +37,7 @@ public class MainActivity extends MainNavDrawer {
         useruid = i.getStringExtra("useruid");
         //Firebase codes end here
 
-
+        imageView = findViewById(R.id.circularImageView2);
         sb = findViewById(R.id.seekBarTime);
         tv = findViewById(R.id.countTV);
         sb.setProgress(0);
@@ -54,6 +54,17 @@ public class MainActivity extends MainNavDrawer {
                 int ps = progress+30;
                 String progressString = String.valueOf(ps);
                 tv.setText(progressString);
+
+                if(ps>=30 && ps<=50){
+                    imageView.setImageResource(R.drawable.woodbld);
+                }else if(ps>= 51 && ps<=70){
+                    imageView.setImageResource(R.drawable.smallbld);
+                }else if(ps>= 71 && ps<=90){
+                    imageView.setImageResource(R.drawable.mediumbld);
+                }else if(ps>= 91 && ps<=120){
+                    imageView.setImageResource(R.drawable.skybld);
+                }
+
             }
 
             @Override
