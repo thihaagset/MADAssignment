@@ -35,11 +35,7 @@ public class SignUp extends MainNavDrawer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ViewGroup root = findViewById(R.id.drawer_layout);
-        LayoutInflater inflater = (LayoutInflater) this
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView = inflater.inflate(R.layout.activity_sign_up, root, false);
-        drawer.addView(contentView, 0);
+        setContentView(R.layout.activity_sign_up);
 
 
         email = findViewById(R.id.email_address_sign_up);
@@ -47,10 +43,6 @@ public class SignUp extends MainNavDrawer {
         password = findViewById(R.id.user_password_sign_up);
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-
-
-
-
     }
     public void onclick(View v){
         firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(),

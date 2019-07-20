@@ -59,11 +59,13 @@ public class CountDownActivity extends MainNavDrawer {
         mProgressBar.setMax(120);
 
         time = Integer.parseInt(timeString);
-        startTimer(time);
+
 
         //firebase code:
         db = FirebaseFirestore.getInstance();
         calendar = Calendar.getInstance();
+        Toast.makeText(CountDownActivity.this,useruid,Toast.LENGTH_LONG).show();
+        startTimer(time);
     }
 
     public void onClickPause(View v){
@@ -74,39 +76,7 @@ public class CountDownActivity extends MainNavDrawer {
         startActivity(intent);
     }
 
-    //Hi,Please don't change the code below, it is just for firebase purpose :) - yuxuan
-    public void yesfirebase(){
-        final String useruid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Date c = Calendar.getInstance().getTime();
-        System.out.println("Current time => " + c);
 
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-        String formattedDate = df.format(c);
-        Map<String, Object> buildHistory = new HashMap<>();
-        buildHistory.put("date", formattedDate);
-        buildHistory.put("duration",timeString);
-        buildHistory.put("isComplete", false);
-        long time= System.currentTimeMillis();
-
-
-// Add a new document with a generated ID
-        db.collection("Users").document(useruid).collection("BuildHistory").document( time+"______"+ formattedDate).set(buildHistory)
-
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void avoid) {
-                        Log.d("yes", "DocumentSnapshot added with ID: " + useruid);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("qwe", "Error adding document", e);
-                    }
-                });
-
-    }
-    //firebase code ends here uwu
 
     //you can do your timer here
     private void startTimer(int duration) {
@@ -146,5 +116,38 @@ public class CountDownActivity extends MainNavDrawer {
             }
         }.start();
     }
+    //Hi,Please don't change the code below, it is just for firebase purpose :) - yuxuan
+    public void yesfirebase(){
+        final String useruid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(c);
+        Map<String, Object> buildHistory = new HashMap<>();
+        buildHistory.put("date", formattedDate);
+        buildHistory.put("duration",timeString);
+        buildHistory.put("isComplete", false);
+        long time= System.currentTimeMillis();
+
+
+// Add a new document with a generated ID
+        db.collection("Users").document(useruid).collection("BuildHistory").document( time+"______"+ formattedDate).set(buildHistory)
+
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void avoid) {
+                        Log.d("yes", "DocumentSnapshot added with ID: " + useruid);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("qwe", "Error adding document", e);
+                    }
+                });
+
+    }
+    //firebase code ends here uwu
 }
 

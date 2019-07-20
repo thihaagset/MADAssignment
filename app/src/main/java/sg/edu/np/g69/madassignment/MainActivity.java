@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class MainActivity extends MainNavDrawer {
@@ -18,6 +21,7 @@ public class MainActivity extends MainNavDrawer {
     TextView tv;
     Intent i;
     String useruid;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,9 @@ public class MainActivity extends MainNavDrawer {
         sb.setProgress(0);
         sb.incrementProgressBy(10);
         sb.setMax(90);
+
+        db = FirebaseFirestore.getInstance();
+        Toast.makeText(MainActivity.this,useruid,Toast.LENGTH_LONG).show();
 
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
