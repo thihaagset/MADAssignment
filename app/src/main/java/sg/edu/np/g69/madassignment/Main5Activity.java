@@ -1,6 +1,7 @@
 package sg.edu.np.g69.madassignment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,5 +17,8 @@ public class Main5Activity extends MainNavDrawer {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_main5, root, false);
         drawer.addView(contentView, 0);
+
+        Intent i = getIntent();
+
     }
 }

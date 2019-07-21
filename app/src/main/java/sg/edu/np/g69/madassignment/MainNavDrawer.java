@@ -82,22 +82,15 @@ public class MainNavDrawer extends AppCompatActivity
             Intent intent = new Intent(this,MainActivity.class);
             intent.putExtra("UserUid",useruid);
             startActivity(intent);
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-
-
         } else if (id == R.id.nav_tools) {
             Intent intent = new Intent(this,UserChart.class);
             intent.putExtra("UserUid",useruid);
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            Intent intent = new Intent(this,Main5Activity.class);
+            intent.putExtra("UserUid",useruid);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

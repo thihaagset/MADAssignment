@@ -84,6 +84,7 @@ public class CountDownActivity extends MainNavDrawer {
     public void onClickPause(View v){
         cdt.cancel();
         tv.setText("0:00");
+        mProgressBar.setProgress(0);
 
         Intent intent = new Intent(CountDownActivity.this,GiveUp.class);
         startActivity(intent);
