@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -37,6 +38,8 @@ public class UserChart extends AppCompatActivity {
     String currentUser;
     int totalMin;
 
+    int count;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,17 +65,15 @@ public class UserChart extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                     for(QueryDocumentSnapshot documentSnapshot:task.getResult()){
-
                         String tempCal = documentSnapshot.getString("duration");
                         totalMin += Integer.parseInt(tempCal);
                         Toast.makeText(UserChart.this,totalMin + "yes",Toast.LENGTH_LONG).show();
                     }
-
                 }else {
-
                 }
             }
         });
+
 
 
 
