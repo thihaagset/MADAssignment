@@ -2,9 +2,12 @@ package sg.edu.np.g69.madassignment;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -24,6 +27,8 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.w3c.dom.Text;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,8 +42,12 @@ public class UserChart extends AppCompatActivity {
     Intent i;
     String currentUser;
     int totalMin;
-
-    int count;
+    int month;
+    String currentMonth;
+    int daysInMonth;
+    TextView nextMonth;
+    TextView prevMonth;
+    int x=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +58,7 @@ public class UserChart extends AppCompatActivity {
         i = getIntent();
         currentUser = i.getStringExtra("UserUid");
         Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_WEEK);
+         month = calendar.get(Calendar.MONTH);
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c);
@@ -65,35 +74,70 @@ public class UserChart extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                     for(QueryDocumentSnapshot documentSnapshot:task.getResult()){
+
                         String tempCal = documentSnapshot.getString("duration");
                         totalMin += Integer.parseInt(tempCal);
                         Toast.makeText(UserChart.this,totalMin + "yes",Toast.LENGTH_LONG).show();
                     }
+
                 }else {
+
                 }
             }
         });
 
+        monthMethod();
+        nextMonth=findViewById(R.id.textView2);
+        prevMonth=findViewById(R.id.textView3);
+
+        for(int n=daysInMonth;n>-1;n--){
+            user_hours_focused.add(new BarEntry(x,x));
+            x++;
 
 
 
-        user_hours_focused.add(new BarEntry(0f,1.5f));
+        }
+        /*user_hours_focused.add(new BarEntry(0f,1.5f));
         user_hours_focused.add(new BarEntry(1f,2.5f));
         user_hours_focused.add(new BarEntry(2f,0f));
         user_hours_focused.add(new BarEntry(3f,5f));
         user_hours_focused.add(new BarEntry(4f,4f));
         user_hours_focused.add(new BarEntry(5f,2f));
-        user_hours_focused.add(new BarEntry(6f,1f));
+        user_hours_focused.add(new BarEntry(6f,1f));*/
         BarDataSet barDataSet = new BarDataSet(user_hours_focused,"");
 
-        ArrayList<String> week_days = new ArrayList<>();
-        week_days.add("Monday");
+        final ArrayList<String> week_days = new ArrayList<>();
+
+        /*week_days.add("Monday");
         week_days.add("Tuesday");
         week_days.add("Wednesday");
         week_days.add("Thursday");
         week_days.add("Friday");
         week_days.add("Saturday");
-        week_days.add("Sunday");
+        week_days.add("Sunday");*/
+
+        nextMonth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                month+=1;
+                monthMethod();
+                Toast.makeText(UserChart.this, "You are viewing "+currentMonth,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        prevMonth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                month-=1;
+                monthMethod();
+                Toast.makeText(UserChart.this, "You are viewing "+currentMonth,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         BarData barData = new BarData(barDataSet);
         barData.setBarWidth(0.9f); // set custom bar width
@@ -107,7 +151,82 @@ public class UserChart extends AppCompatActivity {
 
 
     }
+<<<<<<< HEAD
     public void getFromFirebase(){
 
+=======
+
+
+    public int monthMethod(){
+        if(month>12){
+            month=1;
+            monthMethod();
+        }
+        else{
+            switch(month){
+                case 1:
+                    currentMonth="January";
+                    daysInMonth=31;
+                    break;
+
+                case 2:
+                    currentMonth="February";
+                    daysInMonth=28;
+                    break;
+
+                case 3:
+                    currentMonth="March";
+                    daysInMonth=31;
+                    break;
+
+                case 4:
+                    currentMonth="April";
+                    daysInMonth=30;
+                    break;
+
+                case 5:
+                    currentMonth="May";
+                    daysInMonth=31;
+                    break;
+
+                case 6:
+                    currentMonth="June";
+                    daysInMonth=30;
+                    break;
+
+                case 7:
+                    currentMonth="July";
+                    daysInMonth=31;
+                    break;
+
+                case 8:
+                    currentMonth="August";
+                    daysInMonth=31;
+                    break;
+
+                case 9:
+                    currentMonth="September";
+                    daysInMonth=30;
+                    break;
+
+                case 10:
+                    currentMonth="October";
+                    daysInMonth=31;
+                    break;
+
+                case 11:
+                    currentMonth="November";
+                    daysInMonth=30;
+                    break;
+
+                case 12:
+                    currentMonth="December";
+                    daysInMonth=31;
+                    break;
+
+
+            }
+        }return daysInMonth;
+>>>>>>> 069d9b646f3f6e062936cb19786e09e9fb92ffa9
     }
 }
