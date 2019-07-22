@@ -48,6 +48,7 @@ public class UserChart extends AppCompatActivity {
     TextView nextMonth;
     TextView prevMonth;
     int x=1;
+    CollectionReference data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,43 +60,26 @@ public class UserChart extends AppCompatActivity {
         currentUser = i.getStringExtra("UserUid");
         Calendar calendar = Calendar.getInstance();
          month = calendar.get(Calendar.MONTH);
-        Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-        String formattedDate = df.format(c);
+
         db = FirebaseFirestore.getInstance();
         totalMin = 0;
+        user = FirebaseAuth.getInstance();
+
+        Toast.makeText(UserChart.this,user.getUid(),Toast.LENGTH_LONG).show();
+        data = db.collection("Users").document(user.getUid()).collection("BuildHistory");
 
 
-        CollectionReference data = db.collection("Users").document(currentUser).collection("BuildHistory");
-        Query timeQuery = data.whereEqualTo("date",formattedDate).whereEqualTo("isComplete",true);
 
-        timeQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    for(QueryDocumentSnapshot documentSnapshot:task.getResult()){
 
-                        String tempCal = documentSnapshot.getString("duration");
-                        totalMin += Integer.parseInt(tempCal);
-                        Toast.makeText(UserChart.this,totalMin + "yes",Toast.LENGTH_LONG).show();
-                    }
-
-                }else {
-
-                }
-            }
-        });
 
         monthMethod();
         nextMonth=findViewById(R.id.textView2);
         prevMonth=findViewById(R.id.textView3);
 
         for(int n=daysInMonth;n>-1;n--){
-            user_hours_focused.add(new BarEntry(x,x));
+            getFromFirebase();
+            user_hours_focused.add(new BarEntry(n,x));
             x++;
-
-
-
         }
         /*user_hours_focused.add(new BarEntry(0f,1.5f));
         user_hours_focused.add(new BarEntry(1f,2.5f));
@@ -151,10 +135,8 @@ public class UserChart extends AppCompatActivity {
 
 
     }
-<<<<<<< HEAD
-    public void getFromFirebase(){
 
-=======
+
 
 
     public int monthMethod(){
@@ -227,6 +209,29 @@ public class UserChart extends AppCompatActivity {
 
             }
         }return daysInMonth;
->>>>>>> 069d9b646f3f6e062936cb19786e09e9fb92ffa9
     }
+    public void getFromFirebase(){
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(c);
+        Query timeQuery = data.whereEqualTo("date",formattedDate).whereEqualTo("isComplete",true);
+
+        timeQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    for(QueryDocumentSnapshot documentSnapshot:task.getResult()){
+
+                        String tempCal = documentSnapshot.getString("duration");
+                        totalMin += Integer.parseInt(tempCal);
+                        Toast.makeText(UserChart.this,totalMin + "yes",Toast.LENGTH_LONG).show();
+                    }
+
+                }else {
+
+                }
+            }
+        });
+    }
+
 }

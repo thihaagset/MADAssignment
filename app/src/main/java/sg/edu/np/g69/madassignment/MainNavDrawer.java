@@ -11,6 +11,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -20,6 +22,7 @@ public class MainNavDrawer extends AppCompatActivity
     protected  DrawerLayout drawer;
     FirebaseAuth user;
     String useruid;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,8 @@ public class MainNavDrawer extends AppCompatActivity
 
         user = FirebaseAuth.getInstance();
         useruid = user.getCurrentUser().getUid();
+        Toast.makeText(MainNavDrawer.this,user.getUid(),Toast.LENGTH_LONG).show();
+        textView = findViewById(R.id.useremailnav);
     }
 
     @Override

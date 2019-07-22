@@ -12,6 +12,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
@@ -22,6 +23,7 @@ public class MainActivity extends MainNavDrawer {
     Intent i;
     String useruid;
     FirebaseFirestore db;
+    FirebaseAuth user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class MainActivity extends MainNavDrawer {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_main, root, false);
         drawer.addView(contentView, 0);
+        user = FirebaseAuth.getInstance();
 
         //code for firebase
         i = getIntent();
@@ -45,7 +48,7 @@ public class MainActivity extends MainNavDrawer {
         sb.setMax(90);
 
         db = FirebaseFirestore.getInstance();
-        Toast.makeText(MainActivity.this,useruid,Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this,user.getUid(),Toast.LENGTH_LONG).show();
 
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 

@@ -41,6 +41,7 @@ public class CountDownActivity extends MainNavDrawer {
     ImageView imageView;
     String formattedDate;
     long timetouse;
+    FirebaseAuth user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,9 @@ public class CountDownActivity extends MainNavDrawer {
         tv = findViewById(R.id.countTV);
         tv.setText(timeString);
 
+        user = FirebaseAuth.getInstance();
+
+
         mProgressBar=findViewById(R.id.progressBar);
         mProgressBar.setProgress(time);
         mProgressBar.setMax(120);
@@ -68,7 +72,7 @@ public class CountDownActivity extends MainNavDrawer {
         //firebase code:
         db = FirebaseFirestore.getInstance();
         calendar = Calendar.getInstance();
-        Toast.makeText(CountDownActivity.this,useruid,Toast.LENGTH_LONG).show();
+        Toast.makeText(CountDownActivity.this,user.getUid(),Toast.LENGTH_LONG).show();
 
         imageView = findViewById(R.id.circularImageView2);
         if(time>=30 && time<=50){
@@ -138,6 +142,7 @@ public class CountDownActivity extends MainNavDrawer {
         final String useruid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
+        timetouse= System.currentTimeMillis();
 
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         formattedDate = df.format(c);
@@ -145,12 +150,12 @@ public class CountDownActivity extends MainNavDrawer {
         buildHistory.put("date", formattedDate);
         buildHistory.put("duration",timeString);
         buildHistory.put("isComplete", false);
-        buildHistory.put("timeStamp",time);
-        timetouse= System.currentTimeMillis();
+        buildHistory.put("timeStamp",timetouse);
+
 
 
 // Add a new document with a generated ID
-        db.collection("Users").document(useruid).collection("BuildHistory").document( timetouse+"______"+ formattedDate).set(buildHistory)
+        db.collection("Users").document(user.getUid()).collection("BuildHistory").document( timetouse+"______"+ formattedDate).set(buildHistory)
 
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -170,7 +175,7 @@ public class CountDownActivity extends MainNavDrawer {
         final String useruid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Map<String,Object> updateStatus= new HashMap<>();
         updateStatus.put("isComplete",true);
-        db.collection("Users").document(useruid).collection("BuildHistory").document(timetouse +"______"+formattedDate).update(updateStatus)
+        db.collection("Users").document(user.getUid()).collection("BuildHistory").document(timetouse +"______"+formattedDate).update(updateStatus)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
