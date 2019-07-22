@@ -58,7 +58,7 @@ public class UserChart extends AppCompatActivity {
         i = getIntent();
         currentUser = i.getStringExtra("UserUid");
         Calendar calendar = Calendar.getInstance();
-         month = calendar.get(Calendar.MONTH);
+         month = calendar.get(Calendar.MONTH)+1;
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c);
@@ -151,11 +151,10 @@ public class UserChart extends AppCompatActivity {
 
 
     }
-<<<<<<< HEAD
-    public void getFromFirebase(){
 
-=======
+    public void getFromFirebase() {
 
+    }
 
     public int monthMethod(){
         if(month>12){
@@ -227,6 +226,6 @@ public class UserChart extends AppCompatActivity {
 
             }
         }return daysInMonth;
->>>>>>> 069d9b646f3f6e062936cb19786e09e9fb92ffa9
+
     }
 }
