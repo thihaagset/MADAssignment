@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sg.edu.np.g69.madassignment">
-    <permission  android:name="android.permission.INTERNET"></permission>
+
+    <permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -10,27 +11,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".RecyclerViewActivity"></activity>
         <activity
             android:name=".MainNavDrawer"
             android:label="@string/title_activity_main6"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Main5Activity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Main4Activity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".GiveUp"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".CountDownActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-            <activity android:name=".UserChart"
-                android:theme="@style/AppTheme.NoActionBar"/>
-
-        <activity android:name=".SignUp"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-                <activity android:name=".MainActivity"
-                    android:theme="@style/AppTheme.NoActionBar"/>
-                    <activity android:name=".LoginInAttempt">
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Main5Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Main4Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GiveUp"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CountDownActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UserChart"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SignUp"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".LoginInAttempt">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,7 +48,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>
