@@ -34,9 +34,9 @@
         android:id="@+id/countTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-light"
+        android:fontFamily="@font/advent_pro"
         android:paddingLeft="3dp"
-        android:text="suckmedaddy@gmail.com"
+        android:text="Focus on your study, Build your Skyscraper"
         android:textColor="#56BDB6"
         android:textSize="14sp"
         android:textStyle="italic" />

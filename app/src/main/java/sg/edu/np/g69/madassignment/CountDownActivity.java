@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class CountDownActivity extends MainNavDrawer {
     ProgressBar mProgressBar;
     CountDownTimer cdt;
     int time;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +67,24 @@ public class CountDownActivity extends MainNavDrawer {
         db = FirebaseFirestore.getInstance();
         calendar = Calendar.getInstance();
         Toast.makeText(CountDownActivity.this,useruid,Toast.LENGTH_LONG).show();
+
+        imageView = findViewById(R.id.circularImageView2);
+        if(time>=30 && time<=50){
+            imageView.setImageResource(R.drawable.woodbld);
+        }else if(time>= 51 && time<=70){
+            imageView.setImageResource(R.drawable.smallbld);
+        }else if(time>= 71 && time<=90){
+            imageView.setImageResource(R.drawable.mediumbld);
+        }else if(time>= 91 && time<=120){
+            imageView.setImageResource(R.drawable.skybld);
+        }
         startTimer(time);
     }
 
     public void onClickPause(View v){
         cdt.cancel();
         tv.setText("0:00");
+        mProgressBar.setProgress(0);
 
         Intent intent = new Intent(CountDownActivity.this,GiveUp.class);
         startActivity(intent);
@@ -86,7 +100,7 @@ public class CountDownActivity extends MainNavDrawer {
             cdt.cancel();
         }
 
-        cdt = new CountDownTimer(duration*6000,1000){
+        cdt = new CountDownTimer(duration*60000,1000){
             @Override
             public void onTick(long millisUntilFinished) {
                 tv.setText((int)millisUntilFinished/60000 + " : " + (int)millisUntilFinished%60000/1000);
