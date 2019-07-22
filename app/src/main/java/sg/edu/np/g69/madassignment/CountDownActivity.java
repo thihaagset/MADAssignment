@@ -39,6 +39,8 @@ public class CountDownActivity extends MainNavDrawer {
     CountDownTimer cdt;
     int time;
     ImageView imageView;
+    String formattedDate;
+    long timetouse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +113,7 @@ public class CountDownActivity extends MainNavDrawer {
             public void onFinish() {
                 tv.setText("0 : 00");
                 mProgressBar.setProgress(0);
+                updateOnFinished();
 
                 Toast tt = Toast.makeText(CountDownActivity.this,
                         "Times Up!", Toast.LENGTH_LONG);
@@ -137,16 +140,17 @@ public class CountDownActivity extends MainNavDrawer {
         System.out.println("Current time => " + c);
 
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-        String formattedDate = df.format(c);
+        formattedDate = df.format(c);
         Map<String, Object> buildHistory = new HashMap<>();
         buildHistory.put("date", formattedDate);
         buildHistory.put("duration",timeString);
         buildHistory.put("isComplete", false);
-        long time= System.currentTimeMillis();
+        buildHistory.put("timeStamp",time);
+        timetouse= System.currentTimeMillis();
 
 
 // Add a new document with a generated ID
-        db.collection("Users").document(useruid).collection("BuildHistory").document( time+"______"+ formattedDate).set(buildHistory)
+        db.collection("Users").document(useruid).collection("BuildHistory").document( timetouse+"______"+ formattedDate).set(buildHistory)
 
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -161,6 +165,24 @@ public class CountDownActivity extends MainNavDrawer {
                     }
                 });
 
+    }
+    public void updateOnFinished(){
+        final String useruid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Map<String,Object> updateStatus= new HashMap<>();
+        updateStatus.put("isComplete",true);
+        db.collection("Users").document(useruid).collection("BuildHistory").document(timetouse +"______"+formattedDate).update(updateStatus)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("yes", "DocumentSnapshot added with ID: " + useruid);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("qwe", "Error adding document", e);
+                    }
+                });
     }
     //firebase code ends here uwu
 }

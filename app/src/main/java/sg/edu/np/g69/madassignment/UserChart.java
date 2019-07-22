@@ -107,4 +107,7 @@ public class UserChart extends AppCompatActivity {
 
 
     }
+    public void getFromFirebase(){
+
+    }
 }
