@@ -59,15 +59,14 @@ public class UserChart extends AppCompatActivity {
         i = getIntent();
         currentUser = i.getStringExtra("UserUid");
         Calendar calendar = Calendar.getInstance();
-<<<<<<< HEAD
+
          month = calendar.get(Calendar.MONTH);
 
-=======
          month = calendar.get(Calendar.MONTH)+1;
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c);
->>>>>>> b175d71f8a7bbc3136b2c9a440039ec8811779c4
+
         db = FirebaseFirestore.getInstance();
         totalMin = 0;
         user = FirebaseAuth.getInstance();
@@ -143,13 +142,7 @@ public class UserChart extends AppCompatActivity {
 
     }
 
-<<<<<<< HEAD
 
-=======
-    public void getFromFirebase() {
->>>>>>> b175d71f8a7bbc3136b2c9a440039ec8811779c4
-
-    }
 
     public int monthMethod(){
         if(month>12){
@@ -221,10 +214,7 @@ public class UserChart extends AppCompatActivity {
 
             }
         }return daysInMonth;
-<<<<<<< HEAD
-=======
 
->>>>>>> b175d71f8a7bbc3136b2c9a440039ec8811779c4
     }
     public void getFromFirebase(){
         Date c = Calendar.getInstance().getTime();
