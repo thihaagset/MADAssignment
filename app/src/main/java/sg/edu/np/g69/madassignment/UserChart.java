@@ -6,12 +6,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.util.Log;
 import android.view.Display;
-=======
 import android.view.LayoutInflater;
->>>>>>> b595457701dcce6f56590e35c1919bcf2478a132
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,20 +73,14 @@ public class UserChart extends MainNavDrawer {
         i = getIntent();
         currentUser = i.getStringExtra("UserUid");
         Calendar calendar = Calendar.getInstance();
-<<<<<<< HEAD
-=======
 
->>>>>>> b595457701dcce6f56590e35c1919bcf2478a132
          month = calendar.get(Calendar.MONTH);
 
          month = calendar.get(Calendar.MONTH)+1;
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c);
-<<<<<<< HEAD
-=======
 
->>>>>>> b595457701dcce6f56590e35c1919bcf2478a132
         db = FirebaseFirestore.getInstance();
         user = FirebaseAuth.getInstance();
 
@@ -168,14 +159,14 @@ public class UserChart extends MainNavDrawer {
         Log.d("----fuckkkk----","no"+ totalMin + status);
 
 
-<<<<<<< HEAD
 
-    }
-=======
+
     }
 
 
->>>>>>> b595457701dcce6f56590e35c1919bcf2478a132
+
+
+
 
 
     public int monthMethod(){
@@ -248,10 +239,8 @@ public class UserChart extends MainNavDrawer {
 
             }
         }return daysInMonth;
-<<<<<<< HEAD
-=======
 
->>>>>>> b595457701dcce6f56590e35c1919bcf2478a132
+
     }
     public String getFromFirebase(){
         Date c = Calendar.getInstance().getTime();

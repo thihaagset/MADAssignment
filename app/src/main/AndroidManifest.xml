@@ -21,9 +21,7 @@
         <activity
             android:name=".Main5Activity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Main4Activity"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".GiveUp"
             android:theme="@style/AppTheme.NoActionBar" />
