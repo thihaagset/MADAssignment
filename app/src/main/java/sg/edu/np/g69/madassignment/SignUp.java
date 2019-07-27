@@ -46,41 +46,48 @@ public class SignUp extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
     }
     public void onclick(View v){
-        firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(),
-                password.getText().toString())
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+        if(!(email.getText().toString().equals("")) && !(password.getText().toString().equals(""))){
+            firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(),
+                    password.getText().toString())
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
 
 
-                     final String useruid = firebaseAuth.getCurrentUser().getUid();
-                    Map<String, Object> user = new HashMap<>();
-                    user.put("email",email.getText().toString());
+                                final String useruid = firebaseAuth.getCurrentUser().getUid();
+                                Map<String, Object> user = new HashMap<>();
+                                user.put("email",email.getText().toString());
 
 
 // Add a new document with a generated ID
-                    db.collection("Users").document(useruid).set(user)
+                                db.collection("Users").document(useruid).set(user)
 
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void avoid) {
-                                    Log.d("yes", "DocumentSnapshot added with ID: " + useruid);
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.w("qwe", "Error adding document", e);
-                                }
-                            });
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void avoid) {
+                                                Log.d("yes", "DocumentSnapshot added with ID: " + useruid);
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w("qwe", "Error adding document", e);
+                                            }
+                                        });
 
-                    Toast.makeText(SignUp.this,"Successfully Sign up",Toast.LENGTH_LONG).show();
-                }
-                else {
-                    Toast.makeText(SignUp.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+                                Toast.makeText(SignUp.this,"Successfully Sign up",Toast.LENGTH_LONG).show();
+                            }
+                            else {
+                                Toast.makeText(SignUp.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+
+
+        }else {
+            Toast.makeText(SignUp.this,"Put in valid username and password",Toast.LENGTH_LONG).show();
+        }
+
     }
 }

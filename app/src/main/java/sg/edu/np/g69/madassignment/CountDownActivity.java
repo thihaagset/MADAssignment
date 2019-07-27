@@ -143,14 +143,21 @@ public class CountDownActivity extends MainNavDrawer {
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
         timetouse= System.currentTimeMillis();
-
+        String month;
+        String day;
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat df1 = new SimpleDateFormat("MMM");
+        SimpleDateFormat day1 = new SimpleDateFormat("dd");
         formattedDate = df.format(c);
+        month = df1.format(c);
+        day = day1.format(c);
         Map<String, Object> buildHistory = new HashMap<>();
         buildHistory.put("date", formattedDate);
         buildHistory.put("duration",timeString);
         buildHistory.put("isComplete", false);
         buildHistory.put("timeStamp",timetouse);
+        buildHistory.put("month",month);
+        buildHistory.put("day",day);
 
 
 

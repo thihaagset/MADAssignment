@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -49,45 +51,50 @@ public class UserChart extends AppCompatActivity {
     TextView prevMonth;
     int x=1;
     CollectionReference data;
+    Query timeQuery;
+    boolean status = false;
+    int day = 1;
+    ArrayList<BarEntry> user_hours_focused;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_chart);
         user_Barchart = findViewById(R.id.User_bar);
-        ArrayList<BarEntry> user_hours_focused = new ArrayList<>();
+        user_hours_focused = new ArrayList<>();
         i = getIntent();
         currentUser = i.getStringExtra("UserUid");
         Calendar calendar = Calendar.getInstance();
-<<<<<<< HEAD
          month = calendar.get(Calendar.MONTH);
 
-=======
          month = calendar.get(Calendar.MONTH)+1;
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c);
->>>>>>> b175d71f8a7bbc3136b2c9a440039ec8811779c4
         db = FirebaseFirestore.getInstance();
-        totalMin = 0;
         user = FirebaseAuth.getInstance();
 
         Toast.makeText(UserChart.this,user.getUid(),Toast.LENGTH_LONG).show();
         data = db.collection("Users").document(user.getUid()).collection("BuildHistory");
 
-
-
-
+        totalMin = 0;
 
         monthMethod();
         nextMonth=findViewById(R.id.textView2);
         prevMonth=findViewById(R.id.textView3);
+        getFromFirebase();
 
-        for(int n=daysInMonth;n>-1;n--){
-            getFromFirebase();
-            user_hours_focused.add(new BarEntry(n,x));
-            x++;
+        for(int n=daysInMonth;n>0;n--){
+            final int yes = n;
+
+            queryFirebase(currentMonth,Integer.toString(day));
+
+            Log.d("----actually----","no"+ Thread.currentThread().getName());
+            day += 1;
         }
+        user_hours_focused.add(new BarEntry(1,2));
+
+
         /*user_hours_focused.add(new BarEntry(0f,1.5f));
         user_hours_focused.add(new BarEntry(1f,2.5f));
         user_hours_focused.add(new BarEntry(2f,0f));
@@ -139,17 +146,12 @@ public class UserChart extends AppCompatActivity {
         user_Barchart.getAxisRight().setDrawGridLines(false);// make the x-axis fit exactly all bars
         user_Barchart.invalidate(); // refresh
         user_Barchart.setData(barData);
+        Log.d("----fuckkkk----","no"+ totalMin + status);
 
 
-    }
-
-<<<<<<< HEAD
-
-=======
-    public void getFromFirebase() {
->>>>>>> b175d71f8a7bbc3136b2c9a440039ec8811779c4
 
     }
+
 
     public int monthMethod(){
         if(month>12){
@@ -159,22 +161,22 @@ public class UserChart extends AppCompatActivity {
         else{
             switch(month){
                 case 1:
-                    currentMonth="January";
+                    currentMonth="Jan";
                     daysInMonth=31;
                     break;
 
                 case 2:
-                    currentMonth="February";
+                    currentMonth="Feb";
                     daysInMonth=28;
                     break;
 
                 case 3:
-                    currentMonth="March";
+                    currentMonth="Mar";
                     daysInMonth=31;
                     break;
 
                 case 4:
-                    currentMonth="April";
+                    currentMonth="Apr";
                     daysInMonth=30;
                     break;
 
@@ -184,70 +186,82 @@ public class UserChart extends AppCompatActivity {
                     break;
 
                 case 6:
-                    currentMonth="June";
+                    currentMonth="Jun";
                     daysInMonth=30;
                     break;
 
                 case 7:
-                    currentMonth="July";
+                    currentMonth="Jul";
                     daysInMonth=31;
                     break;
 
                 case 8:
-                    currentMonth="August";
+                    currentMonth="Aug";
                     daysInMonth=31;
                     break;
 
                 case 9:
-                    currentMonth="September";
+                    currentMonth="Sep";
                     daysInMonth=30;
                     break;
 
                 case 10:
-                    currentMonth="October";
+                    currentMonth="Oct";
                     daysInMonth=31;
                     break;
 
                 case 11:
-                    currentMonth="November";
+                    currentMonth="Nov";
                     daysInMonth=30;
                     break;
 
                 case 12:
-                    currentMonth="December";
+                    currentMonth="Dec";
                     daysInMonth=31;
                     break;
 
 
             }
         }return daysInMonth;
-<<<<<<< HEAD
-=======
-
->>>>>>> b175d71f8a7bbc3136b2c9a440039ec8811779c4
     }
-    public void getFromFirebase(){
+    public String getFromFirebase(){
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c);
-        Query timeQuery = data.whereEqualTo("date",formattedDate).whereEqualTo("isComplete",true);
+        return formattedDate;
+    }
+    public int queryFirebase(String months, String day){
+        totalMin = 0;
+        status = true;
 
-        timeQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    for(QueryDocumentSnapshot documentSnapshot:task.getResult()){
+        timeQuery = data.whereEqualTo("month",months).whereEqualTo("isComplete",true).whereEqualTo("day",day);
+        Log.d("----actually----","no" + totalMin);
+            timeQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    status = false;
 
-                        String tempCal = documentSnapshot.getString("duration");
-                        totalMin += Integer.parseInt(tempCal);
-                        Toast.makeText(UserChart.this,totalMin + "yes",Toast.LENGTH_LONG).show();
+                    if(task.isSuccessful()){
+
+                        for(QueryDocumentSnapshot documentSnapshot:task.getResult()){
+
+                            String tempCal = documentSnapshot.getString("duration");
+                            totalMin += Integer.parseInt(tempCal);
+                            Log.d("----work----","no" + totalMin);
+                        }
+
+                    }else {
+                        totalMin = 0;
+                        Log.d("----actually----","no" + totalMin);
                     }
 
-                }else {
-
                 }
-            }
-        });
+
+            });
+
+        Log.d("-------tes----","no" + totalMin);
+            return totalMin;
+
     }
 
 }
