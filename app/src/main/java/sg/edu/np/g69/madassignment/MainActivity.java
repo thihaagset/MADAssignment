@@ -27,6 +27,7 @@ public class MainActivity extends MainNavDrawer {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Adding Nav drawer to all the layout
         super.onCreate(savedInstanceState);
         ViewGroup root = findViewById(R.id.drawer_layout);
         LayoutInflater inflater = (LayoutInflater) this
@@ -60,10 +61,11 @@ public class MainActivity extends MainNavDrawer {
             //OF TIME THE USER HAS CHOSEN
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //The min countdown time is 30, and the max will be 120
                 int ps = progress+30;
                 String progressString = String.valueOf(ps);
                 tv.setText(progressString);
-
+                //change photo according to different countdown time
                 if(ps>=30 && ps<=50){
                     imageView.setImageResource(R.drawable.woodbld);
                 }else if(ps>= 51 && ps<=70){

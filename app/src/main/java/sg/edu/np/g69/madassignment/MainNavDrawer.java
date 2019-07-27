@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainNavDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    //allow all activity can use the drawer object
     protected  DrawerLayout drawer;
     FirebaseAuth user;
     String useruid;

@@ -47,6 +47,7 @@ public class CountDownActivity extends MainNavDrawer {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Adding Nav drawer to all the layout
         super.onCreate(savedInstanceState);
         ViewGroup root = findViewById(R.id.drawer_layout);
         LayoutInflater inflater = (LayoutInflater) this
@@ -64,11 +65,12 @@ public class CountDownActivity extends MainNavDrawer {
 
         user = FirebaseAuth.getInstance();
 
-
+        //find progressbar
         mProgressBar=findViewById(R.id.progressBar);
         mProgressBar.setProgress(time);
         mProgressBar.setMax(120);
 
+        //set time
         time = Integer.parseInt(timeString);
 
 
@@ -77,6 +79,7 @@ public class CountDownActivity extends MainNavDrawer {
         calendar = Calendar.getInstance();
         Toast.makeText(CountDownActivity.this,user.getUid(),Toast.LENGTH_LONG).show();
 
+        //change photo according to different countdown time
         imageView = findViewById(R.id.circularImageView2);
         if(time>=30 && time<=50){
             imageView.setImageResource(R.drawable.woodbld);
