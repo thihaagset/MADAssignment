@@ -45,7 +45,7 @@ public class SignUp extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
     }
-    
+
     public void onclick(View v){
         firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(),
                 password.getText().toString())
