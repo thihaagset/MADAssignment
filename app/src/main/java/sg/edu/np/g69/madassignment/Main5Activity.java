@@ -9,8 +9,11 @@ import android.view.ViewGroup;
 
 public class Main5Activity extends MainNavDrawer {
 
+
+    //CONTACT PAGE
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Adding Nav drawer to all the layout
         super.onCreate(savedInstanceState);
         ViewGroup root = findViewById(R.id.drawer_layout);
         LayoutInflater inflater = (LayoutInflater) this

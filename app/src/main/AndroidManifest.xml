@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RecyclerViewActivity"></activity>
+
         <activity
             android:name=".MainNavDrawer"
             android:label="@string/title_activity_main6"

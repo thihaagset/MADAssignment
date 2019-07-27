@@ -28,6 +28,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CountDownActivity extends MainNavDrawer {
+
+    //NAMING VARIABLES
     Intent intent;
     TextView tv;
     String timeString;
@@ -45,6 +47,7 @@ public class CountDownActivity extends MainNavDrawer {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Adding Nav drawer to all the layout
         super.onCreate(savedInstanceState);
         ViewGroup root = findViewById(R.id.drawer_layout);
         LayoutInflater inflater = (LayoutInflater) this
@@ -52,28 +55,31 @@ public class CountDownActivity extends MainNavDrawer {
         View contentView = inflater.inflate(R.layout.activity_countdowntimer, root, false);
         drawer.addView(contentView, 0);
 
-
+        //GETTING INTENT FROM MainActivity.java
         intent = getIntent();
         timeString = intent.getStringExtra("SeekBar");
         useruid = intent.getStringExtra("useruid");
+
         tv = findViewById(R.id.countTV);
         tv.setText(timeString);
 
         user = FirebaseAuth.getInstance();
 
-
+        //find progressbar
         mProgressBar=findViewById(R.id.progressBar);
         mProgressBar.setProgress(time);
         mProgressBar.setMax(120);
 
+        //set time
         time = Integer.parseInt(timeString);
 
 
-        //firebase code:
+        //FIREBASE CODE:
         db = FirebaseFirestore.getInstance();
         calendar = Calendar.getInstance();
         Toast.makeText(CountDownActivity.this,user.getUid(),Toast.LENGTH_LONG).show();
 
+        //change photo according to different countdown time
         imageView = findViewById(R.id.circularImageView2);
         if(time>=30 && time<=50){
             imageView.setImageResource(R.drawable.woodbld);
@@ -87,10 +93,14 @@ public class CountDownActivity extends MainNavDrawer {
         startTimer(time);
     }
 
+
+    //GIVE UP BUTTON CODE, LAUNCHES A NEW ACTIVITY
+    //THAT SHOWS THE USER THE FAILED BUILDING
     public void onClickPause(View v){
         cdt.cancel();
         tv.setText("0:00");
         mProgressBar.setProgress(0);
+
 
         Intent intent = new Intent(CountDownActivity.this,GiveUp.class);
         startActivity(intent);
@@ -98,7 +108,7 @@ public class CountDownActivity extends MainNavDrawer {
 
 
 
-    //you can do your timer here
+    //STARTS COUNTDOWN TIMER
     private void startTimer(int duration) {
         yesfirebase();
 
@@ -113,6 +123,7 @@ public class CountDownActivity extends MainNavDrawer {
                 mProgressBar.setProgress((int)millisUntilFinished/60000);
             }
 
+            //WHEN TIMER ENDS
             @Override
             public void onFinish() {
                 tv.setText("0 : 00");
@@ -197,5 +208,7 @@ public class CountDownActivity extends MainNavDrawer {
                 });
     }
     //firebase code ends here uwu
+
+
 }
 

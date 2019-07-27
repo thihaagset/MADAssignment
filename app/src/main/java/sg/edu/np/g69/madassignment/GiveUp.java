@@ -12,6 +12,7 @@ public class GiveUp extends MainNavDrawer {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Adding Nav drawer to all the layout
         super.onCreate(savedInstanceState);
         ViewGroup root = findViewById(R.id.drawer_layout);
         LayoutInflater inflater = (LayoutInflater) this
@@ -22,8 +23,14 @@ public class GiveUp extends MainNavDrawer {
         intent = getIntent();
 
     }
+
+
+    //BUTTON TO TRY ANOTHER BUILDING
+    //BRINGS USER TO MainActivity.java THROUGH INTENT
     public void onClickAgain(View view){
         intent = new Intent(GiveUp.this,MainActivity.class);
         startActivity(intent);
     }
+
+
 }
