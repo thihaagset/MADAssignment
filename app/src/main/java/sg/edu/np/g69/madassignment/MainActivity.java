@@ -50,8 +50,14 @@ public class MainActivity extends MainNavDrawer {
         db = FirebaseFirestore.getInstance();
         Toast.makeText(MainActivity.this,user.getUid(),Toast.LENGTH_LONG).show();
 
+
+        //DETECTS IF SLIDER VALUE HAS CHANGED
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
+
+            //THIS CODE CHANGES THE PICTURE IN THE
+            //CIRCLE BASED ON THE AMOUNT
+            //OF TIME THE USER HAS CHOSEN
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 int ps = progress+30;
@@ -84,7 +90,9 @@ public class MainActivity extends MainNavDrawer {
     }
 
 
-
+    //STARTS COUNTDOWN TIMER
+    //LAUNCHES CountDownActivity.java
+    //SENDS INTENT WITH SeekBar AND UserUID
     public void onClickBuild(View v){
         Intent i = new Intent(MainActivity.this, CountDownActivity.class);
         i.putExtra("SeekBar",tv.getText());

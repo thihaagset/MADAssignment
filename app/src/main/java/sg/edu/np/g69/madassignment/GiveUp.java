@@ -22,8 +22,14 @@ public class GiveUp extends MainNavDrawer {
         intent = getIntent();
 
     }
+
+
+    //BUTTON TO TRY ANOTHER BUILDING
+    //BRINGS USER TO MainActivity.java THROUGH INTENT
     public void onClickAgain(View view){
         intent = new Intent(GiveUp.this,MainActivity.class);
         startActivity(intent);
     }
+
+
 }

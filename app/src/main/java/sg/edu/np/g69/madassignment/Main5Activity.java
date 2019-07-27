@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 
 public class Main5Activity extends MainNavDrawer {
 
+
+    //CONTACT PAGE
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
