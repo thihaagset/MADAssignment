@@ -150,10 +150,6 @@ public class UserChart extends MainNavDrawer {
          // set custom bar width
 
         for(int n=daysInMonth;n>-1;n--){
-
-
-
-
             queryFirebase(currentMonth, Integer.toString(day));
             day += 1;
 
@@ -280,7 +276,6 @@ public class UserChart extends MainNavDrawer {
                 user_Barchart.notifyDataSetChanged();
                 user_Barchart.invalidate();
                 user_Barchart.setData(barData);
-
             }
         }, 1000);
 
