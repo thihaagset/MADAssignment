@@ -1,17 +1,18 @@
 package sg.edu.np.g69.madassignment;
 
+import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.util.Log;
 import android.view.Display;
-=======
 import android.view.LayoutInflater;
->>>>>>> b595457701dcce6f56590e35c1919bcf2478a132
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ import org.w3c.dom.Text;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -60,7 +62,9 @@ public class UserChart extends MainNavDrawer {
     Query timeQuery;
     boolean status = false;
     int day = 1;
+    boolean life = false;
     ArrayList<BarEntry> user_hours_focused;
+    ArrayList<FireBaseToChart> please_work_i_beg_u;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,26 +74,19 @@ public class UserChart extends MainNavDrawer {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_user_chart, root, false);
         drawer.addView(contentView, 0);
+        please_work_i_beg_u = new ArrayList<>();
 
         user_Barchart = findViewById(R.id.User_bar);
         user_hours_focused = new ArrayList<>();
         i = getIntent();
         currentUser = i.getStringExtra("UserUid");
         Calendar calendar = Calendar.getInstance();
-<<<<<<< HEAD
-=======
-
->>>>>>> b595457701dcce6f56590e35c1919bcf2478a132
          month = calendar.get(Calendar.MONTH);
 
          month = calendar.get(Calendar.MONTH)+1;
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c);
-<<<<<<< HEAD
-=======
-
->>>>>>> b595457701dcce6f56590e35c1919bcf2478a132
         db = FirebaseFirestore.getInstance();
         user = FirebaseAuth.getInstance();
 
@@ -103,17 +100,6 @@ public class UserChart extends MainNavDrawer {
         prevMonth=findViewById(R.id.textView3);
         getFromFirebase();
 
-        for(int n=daysInMonth;n>0;n--){
-            final int yes = n;
-
-            queryFirebase(currentMonth,Integer.toString(day));
-
-            Log.d("----actually----","no"+ Thread.currentThread().getName());
-            day += 1;
-        }
-        user_hours_focused.add(new BarEntry(1,2));
-
-
         /*user_hours_focused.add(new BarEntry(0f,1.5f));
         user_hours_focused.add(new BarEntry(1f,2.5f));
         user_hours_focused.add(new BarEntry(2f,0f));
@@ -121,7 +107,7 @@ public class UserChart extends MainNavDrawer {
         user_hours_focused.add(new BarEntry(4f,4f));
         user_hours_focused.add(new BarEntry(5f,2f));
         user_hours_focused.add(new BarEntry(6f,1f));*/
-        BarDataSet barDataSet = new BarDataSet(user_hours_focused,"");
+
 
         final ArrayList<String> week_days = new ArrayList<>();
 
@@ -138,9 +124,12 @@ public class UserChart extends MainNavDrawer {
             public void onClick(View v) {
 
                 month+=1;
+                day = 1;
                 monthMethod();
+                vlivli();
                 Toast.makeText(UserChart.this, "You are viewing "+currentMonth,
                         Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -149,35 +138,48 @@ public class UserChart extends MainNavDrawer {
             public void onClick(View v) {
 
                 month-=1;
+                day = 1;
                 monthMethod();
+                vlivli();
                 Toast.makeText(UserChart.this, "You are viewing "+currentMonth,
                         Toast.LENGTH_SHORT).show();
+
+
             }
         });
 
+         // set custom bar width
 
-        BarData barData = new BarData(barDataSet);
-        barData.setBarWidth(0.9f); // set custom bar width
-        user_Barchart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(week_days));
-        user_Barchart.setFitBars(true);
-        user_Barchart.getXAxis().setDrawGridLines(false);
-        user_Barchart.getAxisLeft().setDrawGridLines(false);
-        user_Barchart.getAxisRight().setDrawGridLines(false);// make the x-axis fit exactly all bars
-        user_Barchart.invalidate(); // refresh
-        user_Barchart.setData(barData);
-        Log.d("----fuckkkk----","no"+ totalMin + status);
+        for(int n=daysInMonth;n>-1;n--){
 
+            queryFirebase(currentMonth, Integer.toString(day));
+            day += 1;
 
-<<<<<<< HEAD
+        }
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                for(FireBaseToChart fbtc :please_work_i_beg_u){
+                    Log.d("i hate___mylife", "onCreate: " + fbtc.day + fbtc.MagicalNumber);
+                    user_hours_focused.add(new BarEntry(fbtc.day,fbtc.MagicalNumber));
+                }
+                BarDataSet barDataSet = new BarDataSet(user_hours_focused,"");
+                BarData barData = new BarData(barDataSet);
+                barData.setBarWidth(0.9f);
+                user_Barchart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(week_days));
+                user_Barchart.setFitBars(true);
+                user_Barchart.getXAxis().setDrawGridLines(false);
+                user_Barchart.getAxisLeft().setDrawGridLines(false);
+                user_Barchart.getAxisRight().setDrawGridLines(false);// make the x-axis fit exactly all bars
+                user_Barchart.notifyDataSetChanged();
+                user_Barchart.invalidate();
+                user_Barchart.setData(barData);
+            }
+        }, 1000);
+
 
     }
-=======
-    }
-
-
->>>>>>> b595457701dcce6f56590e35c1919bcf2478a132
-
-
     public int monthMethod(){
         if(month>12){
             month=1;
@@ -248,10 +250,37 @@ public class UserChart extends MainNavDrawer {
 
             }
         }return daysInMonth;
-<<<<<<< HEAD
-=======
+    }
+    public void vlivli(){
 
->>>>>>> b595457701dcce6f56590e35c1919bcf2478a132
+        for(int n=daysInMonth;n>-1;n--){
+
+            queryFirebase(currentMonth, Integer.toString(day));
+            day += 1;
+
+        }
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                for(FireBaseToChart fbtc :please_work_i_beg_u){
+                    Log.d("i hate___mylife", "onCreate: " + fbtc.day + fbtc.MagicalNumber);
+                    user_hours_focused.add(new BarEntry(fbtc.day,fbtc.MagicalNumber));
+                }
+                BarDataSet barDataSet = new BarDataSet(user_hours_focused,"");
+                BarData barData = new BarData(barDataSet);
+                barData.setBarWidth(0.9f);
+                user_Barchart.setFitBars(true);
+                user_Barchart.getXAxis().setDrawGridLines(false);
+                user_Barchart.getAxisLeft().setDrawGridLines(false);
+                user_Barchart.getAxisRight().setDrawGridLines(false);// make the x-axis fit exactly all bars
+                user_Barchart.notifyDataSetChanged();
+                user_Barchart.invalidate();
+                user_Barchart.setData(barData);
+
+            }
+        }, 1000);
+
     }
     public String getFromFirebase(){
         Date c = Calendar.getInstance().getTime();
@@ -259,38 +288,44 @@ public class UserChart extends MainNavDrawer {
         String formattedDate = df.format(c);
         return formattedDate;
     }
-    public int queryFirebase(String months, String day){
-        totalMin = 0;
-        status = true;
+    public int queryFirebase(String months, String dayy){
 
-        timeQuery = data.whereEqualTo("month",months).whereEqualTo("isComplete",true).whereEqualTo("day",day);
-        Log.d("----actually----","no" + totalMin);
+        Log.d("reset______resres", "onComplete: " );
+
+        final int yes = Integer.parseInt(dayy);
+
+        timeQuery = data.whereEqualTo("month",months).whereEqualTo("isComplete",true).whereEqualTo("day",dayy);
             timeQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    status = false;
-
                     if(task.isSuccessful()){
+                        totalMin = 0;
+                        status = false;
 
                         for(QueryDocumentSnapshot documentSnapshot:task.getResult()){
-
                             String tempCal = documentSnapshot.getString("duration");
                             totalMin += Integer.parseInt(tempCal);
-                            Log.d("----work----","no" + totalMin);
+                            status = true;
+                            Log.d("my___fucking___life", "onComplete: " + yes + "i dont have a life" + totalMin);
                         }
-
-                    }else {
-                        totalMin = 0;
-                        Log.d("----actually----","no" + totalMin);
+                        if(status){
+                            FireBaseToChart ohno = new FireBaseToChart();
+                            ohno.setMonth(currentMonth);
+                            ohno.setDay(yes);
+                            ohno.setMagicalNumber(totalMin);
+                            please_work_i_beg_u.add(ohno);
+                        }
+                        if(task.getResult().isEmpty()){
+                            FireBaseToChart ohno = new FireBaseToChart();
+                            ohno.setDay(yes);
+                            ohno.setMonth(currentMonth);
+                            ohno.setMagicalNumber(0);
+                            please_work_i_beg_u.add(ohno);
+                        }
                     }
-
                 }
-
             });
-
-        Log.d("-------tes----","no" + totalMin);
             return totalMin;
 
     }
-
 }
