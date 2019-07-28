@@ -108,7 +108,7 @@ public class UserChart extends MainNavDrawer {
         user_hours_focused.add(new BarEntry(6f,1f));*/
 
 
-        final ArrayList<String> week_days = new ArrayList<>();
+        /*final ArrayList<String> week_days = new ArrayList<>();
 
         /*week_days.add("Monday");
         week_days.add("Tuesday");
@@ -118,6 +118,8 @@ public class UserChart extends MainNavDrawer {
         week_days.add("Saturday");
         week_days.add("Sunday");*/
 
+
+        vlivli();
         nextMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,6 +127,10 @@ public class UserChart extends MainNavDrawer {
                 month+=1;
                 day = 1;
                 monthMethod();
+                user_hours_focused.clear();
+                please_work_i_beg_u.clear();
+                BarDataSet barDataSet = new BarDataSet(user_hours_focused,"");
+                BarData barData = new BarData(barDataSet);
                 vlivli();
                 Toast.makeText(UserChart.this, "You are viewing "+currentMonth,
                         Toast.LENGTH_SHORT).show();
@@ -139,6 +145,10 @@ public class UserChart extends MainNavDrawer {
                 month-=1;
                 day = 1;
                 monthMethod();
+                user_hours_focused.clear();
+                please_work_i_beg_u.clear();
+                BarDataSet barDataSet = new BarDataSet(user_hours_focused,"");
+                BarData barData = new BarData(barDataSet);
                 vlivli();
                 Toast.makeText(UserChart.this, "You are viewing "+currentMonth,
                         Toast.LENGTH_SHORT).show();
@@ -158,7 +168,7 @@ public class UserChart extends MainNavDrawer {
             day += 1;
 
         }
-        final Handler handler = new Handler();
+        /*final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -179,10 +189,12 @@ public class UserChart extends MainNavDrawer {
                 user_Barchart.setData(barData);
             }
         }, 1000);
-
+*/
 
 
     }
+
+
     public int monthMethod(){
         if(month>12){
             month=1;
@@ -254,6 +266,8 @@ public class UserChart extends MainNavDrawer {
             }
         }return daysInMonth;
     }
+
+
     public void vlivli(){
 
         for(int n=daysInMonth;n>-1;n--){
@@ -285,12 +299,18 @@ public class UserChart extends MainNavDrawer {
         }, 1000);
 
     }
+
+
+
+
     public String getFromFirebase(){
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c);
         return formattedDate;
     }
+
+
     public int queryFirebase(String months, String dayy){
 
         Log.d("reset______resres", "onComplete: " );
