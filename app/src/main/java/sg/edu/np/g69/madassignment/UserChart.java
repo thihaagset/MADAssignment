@@ -65,7 +65,6 @@ public class UserChart extends MainNavDrawer {
     boolean life = false;
     ArrayList<BarEntry> user_hours_focused;
     ArrayList<FireBaseToChart> please_work_i_beg_u;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,20 +80,12 @@ public class UserChart extends MainNavDrawer {
         i = getIntent();
         currentUser = i.getStringExtra("UserUid");
         Calendar calendar = Calendar.getInstance();
-<<<<<<< HEAD
-=======
-
->>>>>>> fb4d58e4d19df9234ba029da4a11c70bb9198cf6
          month = calendar.get(Calendar.MONTH);
 
          month = calendar.get(Calendar.MONTH)+1;
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c);
-<<<<<<< HEAD
-=======
-
->>>>>>> fb4d58e4d19df9234ba029da4a11c70bb9198cf6
         db = FirebaseFirestore.getInstance();
         user = FirebaseAuth.getInstance();
 
@@ -156,20 +147,16 @@ public class UserChart extends MainNavDrawer {
             }
         });
 
-<<<<<<< HEAD
          // set custom bar width
 
         for(int n=daysInMonth;n>-1;n--){
-=======
 
 
-    }
->>>>>>> fb4d58e4d19df9234ba029da4a11c70bb9198cf6
+
 
             queryFirebase(currentMonth, Integer.toString(day));
             day += 1;
 
-<<<<<<< HEAD
         }
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -192,11 +179,7 @@ public class UserChart extends MainNavDrawer {
                 user_Barchart.setData(barData);
             }
         }, 1000);
-=======
 
-
-
->>>>>>> fb4d58e4d19df9234ba029da4a11c70bb9198cf6
 
 
     }
@@ -270,7 +253,6 @@ public class UserChart extends MainNavDrawer {
 
             }
         }return daysInMonth;
-<<<<<<< HEAD
     }
     public void vlivli(){
 
@@ -302,10 +284,6 @@ public class UserChart extends MainNavDrawer {
             }
         }, 1000);
 
-=======
-
-
->>>>>>> fb4d58e4d19df9234ba029da4a11c70bb9198cf6
     }
     public String getFromFirebase(){
         Date c = Calendar.getInstance().getTime();
